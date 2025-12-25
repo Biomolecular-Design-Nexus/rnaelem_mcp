@@ -1,0 +1,190 @@
+{
+  "project_name": "RNAelem",
+  "description": "Model Completions Protocol (MCP) server for RNAelem - RNA motif discovery, analysis, and machine learning toolkit",
+  "created_date": "2025-12-25",
+  "tools": [
+    {
+      "name": "scan_motifs",
+      "type": "sync",
+      "description": "Scan RNA sequences for motifs using trained RNAelem models",
+      "example_prompt": "Use scan_motifs with input_file \"examples/data/positive.fa\" and model_file \"results/model.model\" and threshold 0.8"
+    },
+    {
+      "name": "analyze_sequences_ml",
+      "type": "sync",
+      "description": "Machine learning analysis of RNA sequences using RNAelem features",
+      "example_prompt": "Run analyze_sequences_ml on \"examples/data/positive.fa\" using gradient_boost with 200 estimators"
+    },
+    {
+      "name": "validate_input_files",
+      "type": "sync",
+      "description": "Validate file format and content for RNAelem tools",
+      "example_prompt": "Validate the file \"examples/data/positive.fa\" as a FASTA file"
+    },
+    {
+      "name": "get_example_data",
+      "type": "sync",
+      "description": "List available example datasets for testing",
+      "example_prompt": "Show me what example datasets are available"
+    },
+    {
+      "name": "submit_motif_discovery",
+      "type": "submit",
+      "description": "Complete RNAelem motif discovery pipeline (30-60+ min)",
+      "example_prompt": "Submit motif discovery for \"examples/data/positive.fa\" with pattern \"examples/data/simple_pattern.txt\""
+    },
+    {
+      "name": "submit_motif_scanning",
+      "type": "submit",
+      "description": "Large-scale motif scanning (10+ min)",
+      "example_prompt": "Submit large-scale motif scanning for \"large_sequences.fa\" with model \"model.model\""
+    },
+    {
+      "name": "submit_ml_analysis",
+      "type": "submit",
+      "description": "Large-scale ML training (10+ min)",
+      "example_prompt": "Submit ML analysis for \"examples/data/positive.fa\" using gradient_boost"
+    },
+    {
+      "name": "submit_batch_motif_scanning",
+      "type": "batch",
+      "description": "Process multiple files with same model",
+      "example_prompt": "Process multiple files in batch: [\"file1.fa\", \"file2.fa\"] with model \"model.model\""
+    },
+    {
+      "name": "submit_batch_ml_analysis",
+      "type": "batch",
+      "description": "Train models for multiple datasets",
+      "example_prompt": "Train models for datasets [\"dataset1_pos.fa\", \"dataset2_pos.fa\"]"
+    },
+    {
+      "name": "get_job_status",
+      "type": "job_management",
+      "description": "Check job progress and current status",
+      "example_prompt": "Check the status of job \"abc123\""
+    },
+    {
+      "name": "get_job_result",
+      "type": "job_management",
+      "description": "Get completed job results",
+      "example_prompt": "Get results for completed job \"abc123\""
+    },
+    {
+      "name": "get_job_log",
+      "type": "job_management",
+      "description": "View job execution logs",
+      "example_prompt": "Show logs for job \"abc123\" with tail 50"
+    },
+    {
+      "name": "cancel_job",
+      "type": "job_management",
+      "description": "Cancel running jobs",
+      "example_prompt": "Cancel job \"abc123\""
+    },
+    {
+      "name": "list_jobs",
+      "type": "job_management",
+      "description": "List all jobs with optional status filtering",
+      "example_prompt": "List all running jobs"
+    }
+  ],
+  "scripts": [
+    {
+      "name": "simple_pipeline.py",
+      "description": "Complete RNAelem motif discovery pipeline",
+      "example_command": "python scripts/simple_pipeline.py --input examples/data/positive.fa --pattern examples/data/simple_pattern.txt --output results/pipeline_demo --verbose"
+    },
+    {
+      "name": "motif_scanning.py",
+      "description": "Scan sequences using trained models",
+      "example_command": "python scripts/motif_scanning.py --input examples/data/positive.fa --model results/model.model --threshold 0.7 --format json"
+    },
+    {
+      "name": "ml_analysis.py",
+      "description": "Machine learning enhanced analysis",
+      "example_command": "python scripts/ml_analysis.py --positive examples/data/positive.fa --model-type gradient_boost --n-estimators 200"
+    }
+  ],
+  "demo_data": [
+    {
+      "file": "positive.fa",
+      "description": "76 tRNA sequences with CAU anticodon from Rfam RF00005",
+      "used_by": ["all tools", "motif discovery", "ML analysis"]
+    },
+    {
+      "file": "simple_pattern.txt",
+      "description": "Simple hairpin pattern (.....)",
+      "used_by": ["submit_motif_discovery", "motif discovery pipeline"]
+    },
+    {
+      "file": "pattern_list",
+      "description": "Complete search patterns in dot-bracket notation",
+      "used_by": ["advanced motif discovery"]
+    }
+  ],
+  "configs": [
+    {
+      "file": "simple_pipeline_config.json",
+      "description": "Pipeline configuration settings",
+      "parameters": {
+        "force_overwrite": "boolean",
+        "verbose": "boolean",
+        "cross_validation": "integer"
+      }
+    },
+    {
+      "file": "motif_scanning_config.json",
+      "description": "Scanning parameters and thresholds",
+      "parameters": {
+        "threshold": "float",
+        "output_format": "string",
+        "include_alignments": "boolean"
+      }
+    },
+    {
+      "file": "ml_analysis_config.json",
+      "description": "ML model settings and parameters",
+      "parameters": {
+        "model_type": "string",
+        "test_size": "float",
+        "n_estimators": "integer",
+        "cross_validation": "integer"
+      }
+    }
+  ],
+  "installation": {
+    "environment_path": "./env",
+    "python_version": "3.10",
+    "package_manager": "mamba (preferred) or conda",
+    "key_dependencies": [
+      "numpy", "scipy", "pandas", "scikit-learn",
+      "loguru", "click", "tqdm", "fastmcp"
+    ],
+    "system_requirements": [
+      "C++ compiler with C++14 support",
+      "pkg-config", "freetype2-dev"
+    ]
+  },
+  "mcp_installation": {
+    "fastmcp": "fastmcp install src/server.py --name RNAelem",
+    "claude_manual": "claude mcp add RNAelem -- $(pwd)/env/bin/python $(pwd)/src/server.py",
+    "settings_path": "~/.claude/settings.json"
+  },
+  "validation_results": {
+    "files_verified": [
+      "examples/data/positive.fa",
+      "examples/data/simple_pattern.txt",
+      "examples/data/pattern_list",
+      "scripts/simple_pipeline.py",
+      "scripts/motif_scanning.py",
+      "scripts/ml_analysis.py",
+      "configs/simple_pipeline_config.json",
+      "configs/motif_scanning_config.json",
+      "configs/ml_analysis_config.json",
+      "src/server.py"
+    ],
+    "script_help_tested": true,
+    "mcp_imports_tested": true,
+    "environment_functional": true
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "test_date": "2025-12-25T04:11:25.891650",
+  "server_path": "/home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/rnaelem_mcp/src/server.py",
+  "tests": {
+    "server_startup": {
+      "status": "passed",
+      "timestamp": "2025-12-25T04:11:25.891712",
+      "tool_count": 14,
+      "tools": {
+        "get_job_status": 

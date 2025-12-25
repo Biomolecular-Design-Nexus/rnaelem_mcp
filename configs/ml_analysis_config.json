@@ -1,0 +1,22 @@
+{
+  "_description": "Configuration for ml_analysis.py",
+  "_source": "Extracted from examples/use_case_5_ml_analysis.py",
+
+  "model_type": "random_forest",
+  "test_size": 0.3,
+  "random_state": 42,
+  "n_estimators": 100,
+  "max_depth": 10,
+  "cv_folds": 5,
+  "feature_importance_top_n": 20,
+  "verbose": false,
+
+  "_options": {
+    "model_type": ["random_forest", "gradient_boost"],
+    "test_size": "Float between 0.1 and 0.5 for train/test split",
+    "n_estimators": "Integer number of trees in ensemble (50-500)",
+    "max_depth": "Integer maximum depth of trees (5-20)",
+    "cv_folds": "Integer number of cross-validation folds",
+    "feature_importance_top_n": "Integer number of top features to report"
+  }
+}

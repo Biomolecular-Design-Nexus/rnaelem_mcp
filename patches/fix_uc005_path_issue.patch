@@ -1,0 +1,11 @@
+--- a/examples/use_case_5_ml_analysis.py
++++ b/examples/use_case_5_ml_analysis.py
+@@ -242,7 +242,7 @@ def main():
+     # Generate k-mer features using kmer-psp.py
+     print("Generating k-mer features...")
+     feature_file = output_dir / "features.fq"
+-    cmd = ["kmer-psp.py", args.positive, negative_file]
++    cmd = ["kmer-psp.py", args.positive, str(negative_file)]
+
+     result = run_command(cmd, "Generating k-mer features")
+     if result is None:

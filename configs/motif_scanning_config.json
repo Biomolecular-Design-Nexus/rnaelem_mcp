@@ -1,0 +1,14 @@
+{
+  "_description": "Configuration for motif_scanning.py",
+  "_source": "Extracted from examples/use_case_3_motif_scanning.py",
+
+  "threshold": 0.5,
+  "output_format": "json",
+  "include_metadata": true,
+  "verbose": false,
+
+  "_options": {
+    "output_format": ["json", "csv", "raw"],
+    "threshold": "Float between 0.0 and 1.0 for minimum motif existence probability"
+  }
+}

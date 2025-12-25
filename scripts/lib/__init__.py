@@ -1,0 +1,1 @@
+# Shared library for RNAelem MCP scripts

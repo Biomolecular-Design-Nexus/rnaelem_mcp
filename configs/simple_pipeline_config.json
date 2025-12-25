@@ -1,0 +1,14 @@
+{
+  "_description": "Configuration for simple_pipeline.py",
+  "_source": "Extracted from examples/use_case_1_simple_pipeline.py",
+
+  "force_overwrite": false,
+  "verbose": false,
+  "include_intermediate_files": true,
+
+  "_options": {
+    "force_overwrite": "Boolean to overwrite existing output directory",
+    "verbose": "Boolean to enable verbose output during pipeline execution",
+    "include_intermediate_files": "Boolean to keep intermediate files for analysis"
+  }
+}
